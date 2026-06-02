@@ -26,11 +26,34 @@ class CommandDetector:
         }
 
     def process_key(self, key):
-        
-        print(f"KEY: {key}")
+
+        SPECIAL_KEYS = {
+            "shift",
+            "left shift",
+            "right shift",
+            "ctrl",
+            "left ctrl",
+            "right ctrl",
+            "alt",
+            "left alt",
+            "right alt",
+            "tab",
+            "caps lock",
+            "esc",
+            "left windows",
+            "right windows",
+            "windows"
+        }
+
+        # Ignore modifier/system keys
+        if key in SPECIAL_KEYS:
+            return {
+                "detected": False,
+                "command": None
+            }
 
         # Normal character keys
-        if len(key) == 1:
+        if len(key) == 1 and key.isprintable():
             self.buffer += key.lower()
 
         # Space key
@@ -45,15 +68,19 @@ class CommandDetector:
         if len(self.buffer) > self.MAX_BUFFER_SIZE:
             self.buffer = self.buffer[-self.MAX_BUFFER_SIZE:]
 
-        # Analyze command on Enter key
+        # Analyze command on Enter
         if key == "enter":
-
-            print(f"BUFFER: {self.buffer}")
 
             command = self.buffer.strip().lower()
 
-            # Clear buffer after command execution
+            # Clear buffer after processing
             self.buffer = ""
+
+            if not command:
+                return {
+                    "detected": False,
+                    "command": ""
+                }
 
             for keyword, score in self.suspicious_commands.items():
 

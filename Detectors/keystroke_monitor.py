@@ -1,10 +1,10 @@
 import keyboard
 
-from speed_detector import SpeedDetector
-from command_detector import CommandDetector
-from winr_detector import WinRDetector
-from threat_score import ThreatScore
-
+from Detectors.speed_detector import SpeedDetector
+from Detectors.command_detector import CommandDetector
+from Detectors.winr_detector import WinRDetector
+from Detectors.threat_score import ThreatScore
+from database.db_manager import DBManager
 
 class KeystrokeMonitor:
 
@@ -27,6 +27,7 @@ class KeystrokeMonitor:
         self.command_detector = CommandDetector()
         self.winr_detector = WinRDetector()
         self.threat_score = ThreatScore()
+        self.db = DBManager()
 
     def process_key(self, event):
 
@@ -38,7 +39,6 @@ class KeystrokeMonitor:
         speed_result = self.speed_detector.process_key()
 
         winr_result = self.winr_detector.process_key(key)
-        print(winr_result)
 
         # Win+R ke 'r' ko command buffer me mat bhejo
         if winr_result.get("consume_key", False):
@@ -83,6 +83,8 @@ class KeystrokeMonitor:
                 f"{', '.join(threat['reasons'])}"
             )
 
+            self.db.save_incident(threat)
+
         # Speed Detection
 
         if result["speed"]["detected"]:
@@ -124,9 +126,3 @@ class KeystrokeMonitor:
         keyboard.on_press(self.process_key)
 
         keyboard.wait("esc")
-
-
-if __name__ == "__main__":
-
-    monitor = KeystrokeMonitor()
-    monitor.start()
