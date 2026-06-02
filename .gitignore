@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+
+# Database
+*.db
+*.sqlite3
+
+# Logs
+logs/*.txt
+logs/*.csv
+*.log
+
+# VS Code
+.vscode/
+
+# Environment
+.env
+venv/
+.venv/
+
+# Test Files
+test_*.py
