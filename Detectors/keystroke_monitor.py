@@ -6,6 +6,7 @@ from Detectors.winr_detector import WinRDetector
 from Detectors.threat_score import ThreatScore
 from database.db_manager import DBManager
 from logs.export_manager import ExportManager
+from response.process_killer import ProcessKiller
 
 class KeystrokeMonitor:
 
@@ -30,6 +31,7 @@ class KeystrokeMonitor:
         self.threat_score = ThreatScore()
         self.db = DBManager()
         self.export_manager = ExportManager()
+        self.process_killer = ProcessKiller()
 
     def process_key(self, event):
 
@@ -87,6 +89,10 @@ class KeystrokeMonitor:
 
             self.db.save_incident(threat)
             self.export_manager.export_incident(threat)
+            self.process_killer.handle_threat(
+                threat,
+                result["command"]
+                )
 
         # Speed Detection
 
