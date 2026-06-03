@@ -1,0 +1,14 @@
+2026-06-02 12:51:12,MEDIUM,30,Win+R Detected
+2026-06-02 12:51:16,MEDIUM,40,Command: powershell
+2026-06-02 13:16:13,MEDIUM,30,Win+R Detected
+2026-06-02 13:16:16,MEDIUM,40,Command: powershell
+2026-06-02 13:16:29,MEDIUM,30,Win+R Detected
+2026-06-02 13:16:32,HIGH,80,"Command: powershell, Win+R → Command Execution"
+2026-06-02 13:16:37,MEDIUM,40,Win+R → Command Execution
+2026-06-02 13:16:38,MEDIUM,40,Win+R → Command Execution
+2026-06-02 13:16:39,MEDIUM,40,Win+R → Command Execution
+2026-06-02 13:29:54,MEDIUM,30,Win+R Detected
+2026-06-02 13:29:58,HIGH,80,"Command: powershell, Win+R → Command Execution"
+2026-06-02 13:49:48,MEDIUM,30,Win+R Detected
+2026-06-02 13:50:04,MEDIUM,30,Win+R Detected
+2026-06-02 13:50:09,HIGH,80,"Command: powershell, Win+R → Command Execution"

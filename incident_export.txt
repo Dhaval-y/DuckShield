@@ -1,0 +1,84 @@
+
+[2026-06-02 12:51:12]
+Threat Level : MEDIUM
+Threat Score : 30
+Reasons      : Win+R Detected
+--------------------------------------------------
+
+[2026-06-02 12:51:16]
+Threat Level : MEDIUM
+Threat Score : 40
+Reasons      : Command: powershell
+--------------------------------------------------
+
+[2026-06-02 13:16:13]
+Threat Level : MEDIUM
+Threat Score : 30
+Reasons      : Win+R Detected
+--------------------------------------------------
+
+[2026-06-02 13:16:16]
+Threat Level : MEDIUM
+Threat Score : 40
+Reasons      : Command: powershell
+--------------------------------------------------
+
+[2026-06-02 13:16:29]
+Threat Level : MEDIUM
+Threat Score : 30
+Reasons      : Win+R Detected
+--------------------------------------------------
+
+[2026-06-02 13:16:32]
+Threat Level : HIGH
+Threat Score : 80
+Reasons      : Command: powershell, Win+R → Command Execution
+--------------------------------------------------
+
+[2026-06-02 13:16:37]
+Threat Level : MEDIUM
+Threat Score : 40
+Reasons      : Win+R → Command Execution
+--------------------------------------------------
+
+[2026-06-02 13:16:38]
+Threat Level : MEDIUM
+Threat Score : 40
+Reasons      : Win+R → Command Execution
+--------------------------------------------------
+
+[2026-06-02 13:16:39]
+Threat Level : MEDIUM
+Threat Score : 40
+Reasons      : Win+R → Command Execution
+--------------------------------------------------
+
+[2026-06-02 13:29:54]
+Threat Level : MEDIUM
+Threat Score : 30
+Reasons      : Win+R Detected
+--------------------------------------------------
+
+[2026-06-02 13:29:58]
+Threat Level : HIGH
+Threat Score : 80
+Reasons      : Command: powershell, Win+R → Command Execution
+--------------------------------------------------
+
+[2026-06-02 13:49:48]
+Threat Level : MEDIUM
+Threat Score : 30
+Reasons      : Win+R Detected
+--------------------------------------------------
+
+[2026-06-02 13:50:04]
+Threat Level : MEDIUM
+Threat Score : 30
+Reasons      : Win+R Detected
+--------------------------------------------------
+
+[2026-06-02 13:50:09]
+Threat Level : HIGH
+Threat Score : 80
+Reasons      : Command: powershell, Win+R → Command Execution
+--------------------------------------------------
