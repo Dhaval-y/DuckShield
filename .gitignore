@@ -21,3 +21,13 @@ venv/
 
 # Test Files
 test_*.py
+
+__pycache__/
+*.pyc
+
+exports/
+
+database/*.db
+
+logs/*.csv
+logs/*.txt

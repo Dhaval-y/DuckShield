@@ -426,7 +426,7 @@ class Dashboard:
         if selected_filter != "ALL":
 
             query += (
-                " AND level = ?"
+                " AND threat_level = ?"
             )
 
             params.append(
@@ -436,7 +436,7 @@ class Dashboard:
         if search_text:
 
             query += (
-                " AND reason LIKE ?"
+                " AND reasons LIKE ?"
             )
 
             params.append(
@@ -453,7 +453,7 @@ class Dashboard:
         )
 
         records = cursor.fetchall()
-
+        print("Records Found =", len(records))
         conn.close()
 
         low_count = 0
@@ -533,13 +533,13 @@ class Dashboard:
                 "",
                 "end",
                 values=row,
-            tags=(level,)
+                tags=(level,)
             )
 
-        self.root.after(
-            5000,
-            self.refresh_data
-        )
+        # self.root.after(
+        #     5000,
+        #     self.refresh_data
+        # )
 
     def clear_database(self):
 
@@ -554,6 +554,11 @@ class Dashboard:
         conn = self.get_connection()
 
         cursor = conn.cursor()
+
+        print("Search =", search_text)
+        print("Filter =", selected_filter)
+        print("Query =", query)
+        print("Params =", params)
 
         cursor.execute(
             "DELETE FROM incidents"

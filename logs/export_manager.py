@@ -55,7 +55,7 @@ class ExportManager:
             reasons
         )
 
-        self.export_to_csv(
+        self.export_to_csv(  
             timestamp,
             threat["level"],
             threat["score"],
