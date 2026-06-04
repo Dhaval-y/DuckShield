@@ -1,3 +1,5 @@
+from response.threat_popup import ThreatPopup
+
 import os
 
 
@@ -64,7 +66,9 @@ class ProcessKiller:
 
         process_name = None
 
-        # Direct keyword match
+        # ------------------------
+        # Direct Mapping
+        # ------------------------
 
         if keyword in self.blocked_processes:
 
@@ -72,15 +76,21 @@ class ProcessKiller:
                 self.blocked_processes[keyword]
             )
 
-        # Special handling
+        # ------------------------
+        # PowerShell Payloads
+        # ------------------------
 
         elif keyword in {
+
             "-enc",
             "encodedcommand",
+
             "invoke-webrequest",
             "downloadstring",
+
             "iex",
             "start-bitstransfer"
+
         }:
 
             process_name = (
@@ -90,6 +100,12 @@ class ProcessKiller:
         if process_name is None:
             return
 
+        print(
+            "[DEBUG] Popup Object Created"
+        )
+
+        popup = ThreatPopup()
+
         # ------------------------
         # HIGH Threat
         # ------------------------
@@ -97,19 +113,32 @@ class ProcessKiller:
         if threat["level"] == "HIGH":
 
             print(
-                "\n[HIGH THREAT DETECTED]"
+                "[DEBUG] Showing HIGH Popup"
+            )
+
+            result = popup.show_popup(
+
+                process_name=
+                process_name,
+
+                threat_level=
+                threat["level"],
+
+                threat_score=
+                threat["score"],
+
+                reasons=
+                threat["reasons"],
+
+                countdown=False
+
             )
 
             print(
-                f"Process : {process_name}"
+                f"[DEBUG] Result = {result}"
             )
 
-            choice = input(
-                "Terminate process? "
-                "(Y/N): "
-            )
-
-            if choice.lower() == "y":
+            if result:
 
                 self.kill_process(
                     process_name
@@ -122,18 +151,33 @@ class ProcessKiller:
         elif threat["level"] == "CRITICAL":
 
             print(
-                "\n[CRITICAL THREAT]"
+                "[DEBUG] Showing CRITICAL Popup"
+            )
+
+            result = popup.show_popup(
+
+                process_name=
+                process_name,
+
+                threat_level=
+                threat["level"],
+
+                threat_score=
+                threat["score"],
+
+                reasons=
+                threat["reasons"],
+
+                countdown=True
+
             )
 
             print(
-                "Automatic Response Triggered"
+                f"[DEBUG] Result = {result}"
             )
 
-            print(
-                f"Target Process : "
-                f"{process_name}"
-            )
+            if result:
 
-            self.kill_process(
-                process_name
-            )
+                self.kill_process(
+                    process_name
+                )

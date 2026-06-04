@@ -62,6 +62,20 @@ class ThreatScore:
 
         if command_result["detected"]:
 
+            # Reset command sequence
+            # if inactivity exceeds window
+
+            if (
+
+                current_time
+                - self.last_command_sequence_time
+
+                > self.CORRELATION_WINDOW
+
+            ):
+
+                self.command_count = 0
+
             total_score += (
                 command_result["score"]
             )
@@ -75,6 +89,11 @@ class ThreatScore:
             )
 
             self.command_count += 1
+
+            print(
+                f"[DEBUG] Command Count = "
+                f"{self.command_count}"
+            )
 
             reasons.append(
                 f"Command: "
@@ -101,7 +120,7 @@ class ThreatScore:
 
         if new_event:
 
-            # Win+R → Command
+            # Win+R -> Command
 
             if (
 
@@ -207,7 +226,7 @@ class ThreatScore:
         # Threat Level
         # -------------------------
 
-        if total_score >= 120:
+        if total_score >= 100:
 
             level = "CRITICAL"
 
