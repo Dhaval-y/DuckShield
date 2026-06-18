@@ -97,7 +97,10 @@ class ProcessKiller:
                 "powershell.exe"
             )
 
-        if process_name is None:
+        if threat["level"] not in {
+            "HIGH",
+            "CRITICAL"
+                }:
             return
 
         print(
@@ -119,7 +122,7 @@ class ProcessKiller:
             result = popup.show_popup(
 
                 process_name=
-                process_name,
+                process_name if process_name else "Unknown Process",
 
                 threat_level=
                 threat["level"],
@@ -176,8 +179,8 @@ class ProcessKiller:
                 f"[DEBUG] Result = {result}"
             )
 
-            if result:
+            if result and process_name:
 
                 self.kill_process(
-                    process_name
+                process_name
                 )

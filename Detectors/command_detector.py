@@ -12,7 +12,7 @@ class CommandDetector:
             # Shell Execution
             # -------------------------
 
-            "powershell": 40,
+            "powershell": 20,
             "cmd": 25,
 
             # -------------------------

@@ -3,7 +3,7 @@ import time
 
 class ThreatScore:
 
-    CORRELATION_WINDOW = 10
+    CORRELATION_WINDOW = 30
 
     def __init__(self):
 
@@ -14,6 +14,9 @@ class ThreatScore:
         self.command_count = 0
 
         self.last_command_sequence_time = 0
+
+        print("ThreatScore Reset")
+        print("Command Count =", self.command_count)
 
     def calculate(
         self,
@@ -74,6 +77,10 @@ class ThreatScore:
 
             ):
 
+                print(
+                    "[DEBUG] Resetting Command Count"
+                )
+
                 self.command_count = 0
 
             total_score += (
@@ -120,7 +127,7 @@ class ThreatScore:
 
         if new_event:
 
-            # Win+R -> Command
+            # Win+R → Command
 
             if (
 
@@ -226,11 +233,11 @@ class ThreatScore:
         # Threat Level
         # -------------------------
 
-        if total_score >= 100:
+        if total_score >= 70:
 
             level = "CRITICAL"
 
-        elif total_score >= 80:
+        elif total_score >= 50:
 
             level = "HIGH"
 
